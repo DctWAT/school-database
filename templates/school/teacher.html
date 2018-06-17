@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher's data</title>
+</head>
+<body>
+<form action="{% url 'school:update' teacher.id %}" method="update">
+    {% csrf_token %}
+    <p>Enter new data: </p>
+    <p>Teacher's new first name: </p>
+    <input type="text" name="first_name" value="{{ teacher.first_name }}">
+    <p>Teacher's new last name: </p>
+    <input type="text" name="last_name" value="{{ teacher.last_name }}">
+    <p>Teacher's new patronymic: </p>
+    <input type="text" name="patronymic" value="{{ teacher.patronymic }}">
+    <input type="submit" value="Update">
+</form>
+</body>
+</html>

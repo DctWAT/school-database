@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher list</title>
+</head>
+<body>
+<h1>Teacher list</h1>
+{% if teacher_list %}
+    {#    <ul>#}
+    {#        {% for teacher in teacher_list %}#}
+    {#            <li><a href="teacher/{{ teacher.id }}/">{{ teacher.last_name }}</a></li>#}
+    {#        {% endfor %}#}
+    {#    </ul>#}
+    <table>
+        <tr>
+            <th>#</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Patronymic</th>
+            <th></th>
+        </tr>
+        {% for teacher in teacher_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ teacher.first_name }}</td>
+                <td>{{ teacher.last_name }}</td>
+                <td>{{ teacher.patronymic }}</td>
+                <td><a href="{% url 'school:delete' teacher.id %}">Delete</a></td>
+                <td><a href="{% url 'school:teacher' teacher.id %}">Update</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>None</p>
+{% endif %}
+<form action="{% url 'school:add' %}" method="post">
+    {% csrf_token %}
+    <p>Enter your data: </p>
+    <p>Teacher's first name: </p>
+    <input type="text" name="first_name">
+    <p>Teacher's last name: </p>
+    <input type="text" name="last_name">
+    <p>Teacher's patronymic: </p>
+    <input type="text" name="patronymic">
+    <input type="submit" value="Add">
+</form>
+</body>
+</html>
