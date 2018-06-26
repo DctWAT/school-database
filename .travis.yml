@@ -1,0 +1,6 @@
+language: python
+
+sudo: enabled
+
+script:
+  - python ./manage.py test
