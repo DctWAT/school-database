@@ -2,9 +2,5 @@ language: python
 
 sudo: enabled
 
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install python3
-
 script:
-  - python ./manage.py test
+  - python3 ./manage.py test
